@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS burgers;
-
 DROP DATABASE IF EXISTS burger;
 
 CREATE DATABASE burger;
@@ -7,8 +5,8 @@ CREATE DATABASE burger;
 USE burger;
 
 CREATE TABLE burgers (
-	id int NOT NULL AUTO_INCREMENT,
-	burger_name VARCHAR(50),
-    devoured BOOLEAN,
+	id INT NOT NULL AUTO_INCREMENT,
+	burger_name VARCHAR(50) NOT NULL,
+    devoured BOOLEAN NOT NULL DEFAULT false,
 	PRIMARY KEY (id)
 );
