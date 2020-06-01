@@ -5,7 +5,7 @@ var app = express();
 
 var PORT = process.env.PORT || 8080;
 
-app.use(express.static("public"));
+app.use(express.static("./public"));
 app.use(express.urlencoded({
     extended: true
 }));
@@ -16,7 +16,7 @@ app.engine("handlebars", exphbs({
 }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/catsController.js");
+var routes = require("./controllers/burgers_controller.js");
 
 app.use(routes);
 

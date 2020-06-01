@@ -1,19 +1,28 @@
-<h1>Eat-A-Burger</h1>
-
+<h1>Eat-Da-Burger</h1>
+<img id="burgerImg" src="/assets/img/burger.png" alt="cheeseburger" />
 <p>Order and consume virtual burgers here.</p>
+
+<h2>Order a Burger</h2>
+
+<form class="orderBurger">
+
+     <div class="form-group">
+          <label for="bgr">Burger Name:</label>
+          <input type="text" id="bgr" name="name">
+
+          <button type="submit">Add Burger</button>
+     </div>
+</form>
 
 <h2>Order Up!</h2>
 <ul>
      {{#each burgers}}
      {{#unless devoured}}
      <li>
-          <p><span class="label">ID:</span> {{this.id}}</p>
-          <p><span class="label">Burger:</span> {{this.burger_name}}</p>
-          <p><span class="label">Eaten:</span> {{this.devoured}}</p>
-
-          <button data-id="{{this.id}}" class="addBurger">Eat Burger</button>
-
-          <a href="/{{this.id}}">Eat This Burger!</a>
+          <p><span class="label">Burger:</span> {{this.burger_name}}
+               <button data-id="{{this.id}}" class="eatBurger">EAT</button></p>
+          {{!-- <p><span class="label">ID:</span> {{this.id}}</p> --}}
+          {{!-- <p><span class="label">Eaten:</span> {{this.devoured}}</p> --}}
      </li>
      {{/unless}}
      {{/each}}
@@ -25,22 +34,10 @@
      {{#each burgers}}
      {{#if devoured}}
      <li>
-          <p><span class="label">ID:</span> {{this.id}}</p>
           <p><span class="label">Burger:</span> {{this.burger_name}}</p>
-          <p><span class="label">Eaten:</span> {{this.devoured}}</p>
+          {{!-- <p><span class="label">ID:</span> {{this.id}}</p> --}}
+          {{!-- <p><span class="label">Eaten:</span> {{this.devoured}}</p> --}}
      </li>
      {{/if}}
      {{/each}}
 </ul>
-
-<h2>Order a Burger</h2>
-
-<form class="create-form">
-
-     <div class="form-group">
-          <label for="bgr">Burger:</label>
-          <textarea id="bgr" name="burger" rows="8" cols="40"></textarea>
-     </div>
-
-     <button type="submit">Order Burger</button>
-</form>

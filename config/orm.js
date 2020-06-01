@@ -1,59 +1,51 @@
 var connection = require("./connection");
 
-// * In the `orm.js` file, create the methods that will execute the necessary MySQL commands in the controllers. These are the methods you will need to use in order to retrieve and store data in your database.
-
-//   * `selectAll()`
-//   * `insertOne()`
-//   * `updateOne()`
-
 var orm = {
-    selectAll: function (tableInput) {
+    selectAll: function (tblR, cb) {
         var queryString = "SELECT * FROM ??";
         console.log(queryString);
 
-        connection.query(queryString, [tableInput], function (err, result) {
+        connection.query(queryString, [tblR], function (err, res) {
             if (err) {
                 return res.status(500).end();
-            } else
-                console.log(result);
-            res.render("index", {
-                burgers: result
-            });
+            } else {
+                console.log(res);
+                cb(res);
+            }
         });
     },
-    insertOne: function (tableInput, burgerName) {
-        var queryString = "INSERT INTO ?? (burger_name) VALUES (??)";
+    insertOne: function (tblC, col, val, cb) {
+        var queryString = "INSERT INTO ?? (`" + col + "`) VALUES ('" + val + "')";
 
         console.log(queryString);
 
-        connection.query(queryString, [tableInput, burgerName], function (err, result) {
+        connection.query(queryString, [tblC], function (err, res) {
             if (err) {
-                return res.status(500).end();
+                throw err;
             }
 
-            res.json({
-                id: result.insertId
-            });
             console.log({
-                id: result.insertId
+                id: res.insertId
             });
+            cb(res);
         });
     },
-    updateOne: function (tableUpdate, burgerId) {
-        var queryString = "UPDATE ?? SET devoured = true WHERE id = ??";
+    updateOne: function (tblU, colU, colVal, id, cb) {
+        var queryString = "UPDATE ?? SET `" + colU + "` = " + colVal + " WHERE `id` = " + id + "";
 
         console.log(queryString);
 
-        connection.query(queryString, [tableUpdate, burgerId], function (
+        connection.query(queryString, [tblU], function (
             err,
-            result
+            res
         ) {
             if (err) {
-                return res.status(500).end();
-            } else if (result.changedRows === 0) {
-                return res.status(404).end();
+                throw err;
             }
-            res.status(200).end();
+            console.log({
+                id: id
+            });
+            cb(res);
         });
     }
 };

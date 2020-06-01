@@ -7,19 +7,15 @@ router.get("/", function (req, res) {
         var burgerObject = {
             burgers: data
         };
-        console.log(burgerObject);
         res.render("index", burgerObject);
     });
 });
 
 
 router.post("/api/burgers", function (req, res) {
-    burger.create([
-        "burger_name"
-    ], [
-        req.body.burger_name
-    ], function (result) {
-        console.log(result.insertId);
+    var name = req.body.name;
+
+    burger.create(name, function (result) {
         res.json({
             id: result.insertId
         });
@@ -28,17 +24,16 @@ router.post("/api/burgers", function (req, res) {
 
 router.put("/api/burgers/:id", function (req, res) {
     var id = req.params.id;
-    console.log(id);
 
-    burger.update({
-        devoured: true
-    }, id, function (result) {
-        if (result.changedRows == 0) {
-            return res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
-    });
+    burger.update(
+        id,
+        function (result) {
+            if (result.changedRows == 0) {
+                return res.status(404).end();
+            } else {
+                res.status(200).end();
+            }
+        });
 });
 
 module.exports = router;
