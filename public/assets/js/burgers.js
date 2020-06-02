@@ -24,6 +24,8 @@ $(function () {
         };
         console.log(newBurger);
 
+        $("#bgr").val("");
+
         $.ajax("/api/burgers", {
             type: "POST",
             data: newBurger

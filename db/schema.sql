@@ -1,9 +1,14 @@
-DROP DATABASE IF EXISTS burger;
+/* local */
+-- DROP DATABASE IF EXISTS burger;
 
-CREATE DATABASE burger;
+-- CREATE DATABASE burger;
 
+-- USE burger;
+
+/* remote */
 USE su7v5yqosqri4xi9;
 
+/* local & remote */
 DROP TABLE IF EXISTS burgers;
 
 CREATE TABLE burgers (

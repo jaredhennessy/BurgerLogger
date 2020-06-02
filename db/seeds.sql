@@ -1,5 +1,10 @@
+/* local */
+-- USE burger;
+
+/* remote */
 USE su7v5yqosqri4xi9;
 
+/* local & remote */
 TRUNCATE TABLE burgers;
 
 INSERT burgers (burger_name) VALUES ("The Trotter");
