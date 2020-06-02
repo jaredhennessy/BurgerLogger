@@ -1,4 +1,4 @@
-USE burger;
+USE su7v5yqosqri4xi9;
 
 TRUNCATE TABLE burgers;
 
